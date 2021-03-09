@@ -1,0 +1,17 @@
+server:
+  port: 8081
+spring:
+  thymeleaf:
+    cache: false
+
+---
+#配置默认用户和密码
+#spring:
+#  security:
+#    user:
+#      name: zb
+#      password: 123456
+
+#logging:
+#  level:
+#    org.springframework.web:INFO
