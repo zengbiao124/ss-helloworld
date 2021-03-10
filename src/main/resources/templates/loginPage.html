@@ -12,7 +12,15 @@
     <div th:if="${param.logout}" class="alert alert-danger">You have been logged out.</div>
     <form th:action="@{/doLogin}" method="post" class="form-horizontal">
         <div class="form-group">
-            <label class="control-label col-xs-2" for="username"> User Name: </label>
+            <label class="control-label col-xs-2" for="email"> username: </label>
+
+            <div class="col-xs-10">
+                <input id="email" type="text" name="email"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-xs-2" for="username"> E-mail: </label>
 
             <div class="col-xs-10">
                 <input id="username" type="text" name="username"/>
@@ -27,6 +35,7 @@
         </div>
         <div class="form-actions col-xs-offset-2 col-xs-10">
             <input type="submit" class="btn btn-primary" value="Sign In"/>
+            <a class="btn btn-default" th:href="@{/signup}">Sign Up</a>
         </div>
     </form>
 </div>

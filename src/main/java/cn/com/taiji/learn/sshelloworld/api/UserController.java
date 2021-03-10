@@ -17,6 +17,7 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
     protected Logger log = LoggerFactory.getLogger(getClass());
+
     @Autowired
     private UserRepository userRepository;
 
@@ -29,7 +30,7 @@ public class UserController {
 
     @GetMapping("{id}")
     public ModelAndView view(@PathVariable("id") Long id) {
-        User user = this.userRepository.findUser(id);
+        User user = this.userRepository.findById(id).get();
         return new ModelAndView("users/view", "user", user);
     }
 
@@ -50,21 +51,19 @@ public class UserController {
 
     @GetMapping(value = "delete/{id}")
     public ModelAndView delete(@PathVariable("id") Long id) {
-        this.userRepository.deleteUser(id);
+        this.userRepository.deleteById(id);
         return new ModelAndView("redirect:/");
     }
 
     @GetMapping("modify/{id}")
     public ModelAndView modifyForm(@PathVariable("id") Long id) {
-        User user = this.userRepository.findUser(id);
+        User user = this.userRepository.findById(id).get();
         return new ModelAndView("users/form", "user", user);
     }
 
     @GetMapping("test/foo")
-    @ResponseBody
     public String foo() {
-        return "foo";
-//        throw new RuntimeException("Expected exception in controller");
+        throw new RuntimeException("Expected exception in controller");
     }
 
     @GetMapping("test/bar")
@@ -78,9 +77,4 @@ public class UserController {
     public String onlyUser() {
         return "onlyUser";
     }
-
-//    @PostMapping("/logout")
-//    public String Logout() {
-//        return "loginPage";
-//    }
 }
